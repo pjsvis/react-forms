@@ -1,0 +1,41 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.form-control {
+  display: inline-block;
+  margin: 0 auto;
+  text-align: left;
+  margin-bottom: 4px;
+}
+
+.message-success {
+  font-size: 18px;
+  color: green;
+}
+
+.message-error {
+  font-size: 18px;
+  color: red;
+}
+
+summary {
+  font-size: 12px;
+  text-align: left;
+  margin-bottom: 14px;
+}
+
+input + p {
+  font-size: 10px !important;
+  height: 12px;
+  margin-top: 0;
+}
