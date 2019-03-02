@@ -4,12 +4,12 @@ import "tachyons";
 import useFormless from "react-useformless";
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { getOptionValue as singleOptionValue, getOptionValues as multiOptionValues } from "./components/options-helper";
-import { SelectSingle} from './components/select-single';
-import { SelectMulti } from './components/select-multi';
+import { singleOptionValue , multiOptionValues} from "./components/select-options-helper";
+import { SingleSelect} from './components/single-select';
+import { MultiSelect } from './components/multi-select';
 
 
-const strOptions: vis.SelectOption[] = [
+const flavourOptions: vis.SelectOption[] = [
   { value: "chocolate", label: "Chocolate" },
   { value: "strawberry", label: "Strawberry" },
   { value: "vanilla", label: "Vanilla" }
@@ -97,10 +97,10 @@ function App() {
   );
 
   const inputStyle = "w-100 mb2"
-  const cardStyle="ba br3 b--silver pa4 shadow-4"
+  const cardStyle="ba br3 b--black-10 pa4 shadow-4"
   // you can set all props for input tag with inputProps(value) function
   return (
-    <div className="ma6 sans-serif">
+    <div className="ma4 sans-serif bg-black-20">
       <div className={'w-30 fl ' + cardStyle }>
         <p className={`message-${ isValid ? "success" : "error" }`}>{message}</p>
         <h1 className="f3">useFormless Hook</h1>
@@ -128,40 +128,42 @@ function App() {
             <input className={inputStyle} type="password" {...inputProps("passwordConfirm")} />
           </div>
 
+          <summary>
+            Approach 2 <br />
+            via setValue, touchValue functions <br />
+            Here you have to pass the functions manual
+        </summary>
 
-          <div className="w-100">
-            <SelectSingle
+          <div className="w-100 mt2">
+            <SingleSelect
               name="flavour"
               caption="Single Flavour"
               values={values}
               onChange={(ev: vis.SelectOption) => {
                 setValue("flavour", singleOptionValue(ev));
               }}
-              options={strOptions}
+              options={flavourOptions}
             />
           </div>
 
           <div className="w-100">
 
-            <SelectMulti
+            <MultiSelect
               name="types"
               caption="Multi Flavour"
               values={values}
               onChange={(ev: vis.SelectOption[]) => {
                 setValue("types", multiOptionValues(ev));
               }}
-              options={strOptions}
+              options={flavourOptions}
             />
           </div>
 
-          <summary>
-            Approach 2 <br />
-            via setValue, touchValue functions <br />
-            Here you have to pass the functions manual
-        </summary>
+
           <div className={inputStyle}>
             <label htmlFor="">about you</label> <br />
             <textarea
+              className={inputStyle}
               placeholder="this input works as inputs above ^^"
               cols={30}
               value={values.aboutYou}

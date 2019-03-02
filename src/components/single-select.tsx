@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Select from "react-select";
-import { getSelectedOption, getSelectedOptions } from './options-helper';
+import { singleSelectedOption as selectedOption, multiSelectedOptions } from './select-options-helper';
 
 interface Props {
   name: string;
@@ -12,7 +12,7 @@ interface Props {
 
 const inputStyle = "w-100 mb2"
 
-export const SelectSingle = (props: Props) => {
+export const SingleSelect = (props: Props) => {
 
   const { name, caption, options, values, onChange } = props
   return (
@@ -22,7 +22,7 @@ export const SelectSingle = (props: Props) => {
         name={name}
         id={name}
         className={inputStyle}
-        value={getSelectedOption(values[name], options)}
+        value={selectedOption(values[name], options)}
         options={options}
         onChange={onChange}
       />
