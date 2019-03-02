@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "tachyons";
 import useFormless from "react-useformless";
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { getOptionValue as getSingleOptionValue, getOptionValues as getMultiOptionValues } from "./components/options-helper";
+import { getOptionValue as singleOptionValue, getOptionValues as multiOptionValues } from "./components/options-helper";
 import { SelectSingle} from './components/select-single';
 import { SelectMulti } from './components/select-multi';
 
@@ -97,10 +97,11 @@ function App() {
   );
 
   const inputStyle = "w-100 mb2"
+  const cardStyle="ba br3 b--silver pa4 shadow-4"
   // you can set all props for input tag with inputProps(value) function
   return (
     <div className="ma6 sans-serif">
-      <div className="w-30 fl">
+      <div className={'w-30 fl ' + cardStyle }>
         <p className={`message-${ isValid ? "success" : "error" }`}>{message}</p>
         <h1 className="f3">useFormless Hook</h1>
         <h2 className="f4">Try it!</h2>
@@ -134,7 +135,7 @@ function App() {
               caption="Single Flavour"
               values={values}
               onChange={(ev: vis.SelectOption) => {
-                setValue("flavour", getSingleOptionValue(ev));
+                setValue("flavour", singleOptionValue(ev));
               }}
               options={strOptions}
             />
@@ -147,7 +148,7 @@ function App() {
               caption="Multi Flavour"
               values={values}
               onChange={(ev: vis.SelectOption[]) => {
-                setValue("types", getMultiOptionValues(ev));
+                setValue("types", multiOptionValues(ev));
               }}
               options={strOptions}
             />
@@ -170,11 +171,11 @@ function App() {
               }}
             />
           </div>
-          <input type="submit" value="submit info" />
+          <input type="submit" value="submit info" className="button-reset" />
         </form>
 
       </div>
-      <div className="w-40 fl">
+      <div className={'w-30 fl ml4 pa4 ' + cardStyle}>
         <pre> {JSON.stringify({ values, errors, touched }, null, 2)}</pre>
       </div>
       <ToastContainer position="bottom-right" />
