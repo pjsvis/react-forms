@@ -4,24 +4,24 @@ import "tachyons";
 import useFormless from "react-useformless";
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { singleOptionValue , multiOptionValues} from "./components/select-options-helper";
-import { SingleSelect} from './components/single-select';
-import { MultiSelect } from './components/multi-select';
+import { singleOptionValue , multiOptionValues} from "./components/select/select-options-helper";
+import { SingleSelect} from './components/select/single-select';
+import { MultiSelect } from './components/select/multi-select';
 
 
-const flavourOptions: vis.SelectOption[] = [
+const flavourOptions: select.Option[] = [
   { value: "chocolate", label: "Chocolate" },
   { value: "strawberry", label: "Strawberry" },
   { value: "vanilla", label: "Vanilla" }
 ];
 
-const numOptions: vis.SelectOption[] = [
+const numOptions: select.Option[] = [
   { value: 100, label: "Chocolate" },
   { value: 200, label: "Strawberry" },
   { value: 300, label: "Vanilla" }
 ];
 
-const boolOptions: vis.SelectOption[] = [
+const boolOptions: select.Option[] = [
   { value: true, label: "Is Chocolate" },
   { value: false, label: "Is not Chocolate" },
 
@@ -128,6 +128,8 @@ function App() {
             <input className={inputStyle} type="password" {...inputProps("passwordConfirm")} />
           </div>
 
+          {/* <SingleSelect className={inputStyle} {...inputProps("flavour")} /> */}
+
           <summary>
             Approach 2 <br />
             via setValue, touchValue functions <br />
@@ -139,7 +141,7 @@ function App() {
               name="flavour"
               caption="Single Flavour"
               values={values}
-              onChange={(ev: vis.SelectOption) => {
+              onChange={(ev: select.Option) => {
                 setValue("flavour", singleOptionValue(ev));
               }}
               options={flavourOptions}
@@ -152,7 +154,7 @@ function App() {
               name="types"
               caption="Multi Flavour"
               values={values}
-              onChange={(ev: vis.SelectOption[]) => {
+              onChange={(ev: select.Option[]) => {
                 setValue("types", multiOptionValues(ev));
               }}
               options={flavourOptions}

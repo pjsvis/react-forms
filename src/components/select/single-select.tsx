@@ -1,18 +1,18 @@
 import * as React from 'react'
 import Select from "react-select";
-import { singleSelectedOption, multiSelectedOptions as selectedMultiOptions } from './select-options-helper';
+import { singleSelectedOption as selectedOption, multiSelectedOptions } from './select-options-helper';
 
 interface Props {
   name: string;
   caption: string;
-  options: vis.SelectOption[];
+  options: select.Option[];
   values: any
-  onChange(ev:any): void
+  onChange(ev: any): void
 }
 
 const inputStyle = "w-100 mb2"
 
-export const MultiSelect = (props: Props) => {
+export const SingleSelect = (props: Props) => {
 
   const { name, caption, options, values, onChange } = props
   return (
@@ -22,9 +22,8 @@ export const MultiSelect = (props: Props) => {
         name={name}
         id={name}
         className={inputStyle}
-        value={selectedMultiOptions(values[name], options)}
+        value={selectedOption(values[name], options)}
         options={options}
-        isMulti={true}
         onChange={onChange}
       />
     </>
