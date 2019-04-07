@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { singleOptionValue , multiOptionValues} from "./components/select/select-options-helper";
 import { SingleSelect} from './components/select/single-select';
 import { MultiSelect } from './components/select/multi-select';
-import { Formless } from './formless/formless-form';
 
 
 const flavourOptions: select.Option[] = [
@@ -102,7 +101,7 @@ function App() {
   // you can set all props for input tag with inputProps(value) function
   return (
     <>
-    <Formless />
+  <div>Hello</div>
     </>
   );
 }

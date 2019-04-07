@@ -11,10 +11,30 @@ import { flavourOptions, validatePasswordConfirm, required } from './formless-he
 
 interface Props{}
 
+interface FormValues{
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+  flavour: string;
+  types: string[];
+  aboutYou: string;
+}
+
+const initialValues: FormValues ={
+  name: "Gibran",
+  email: "Gibran@example.com",
+  password: "",
+  passwordConfirm: "",
+  flavour: "",
+  types: [],
+  aboutYou: "Hello there"
+}
+
 export const Formless = (props: Props) => {
   const [message, setMessage] = useState("");
 
-  const validate = ({ values }: { values: any }) => ({
+  const validate = ({ values }: { values: FormValues }) => ({
     name: required(values.name),
     email: required(values.email),
     password: required(values.password),
@@ -31,7 +51,7 @@ export const Formless = (props: Props) => {
     setMessage("validations success");
     ev.preventDefault();
   };
-  
+
   const {
     values,
     errors,
@@ -43,15 +63,7 @@ export const Formless = (props: Props) => {
     touchValue
   } = useFormless(
     {
-      initialValues: {
-        name: "Gibran",
-        email: "Gibran@example.com",
-        password: "",
-        passwordConfirm: "",
-        flavour: "",
-        types: [],
-        aboutYou: "Hello there"
-      }
+      initialValues: initialValues
     },
     { validate, onSuccess, onError }
   );
@@ -66,7 +78,7 @@ export const Formless = (props: Props) => {
         <h1 className="f3">useFormless Hook</h1>
         <h2 className="f4">Try it!</h2>
         <form action="" onSubmit={onSubmit}>
-          <summary>
+                  <summary>
             Approach 1 <br />
             via inputProps(name) function <br />
             notice: it is compatible with input tag's

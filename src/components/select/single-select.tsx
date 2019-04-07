@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Select from "react-select";
-import { singleSelectedOption as selectedOption, multiSelectedOptions } from './select-options-helper';
+import { singleSelectedOption as selectedOption } from './select-options-helper';
 
 interface Props {
   name: string;
